@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, sys, re
+import os, sys, re, getpass
 
 # Usage example of measuring the distances of X1-Y1 and X2-Y2 for the trajectory in the current directory: python traj2measure.py cur X1-Y1 X2-Y2
 # Usage example of measuring the distances of X1-Y1 and X2-Y2 for all trajectories in the direct subdirectories: python traj2measure.py sub X1-Y1 X2-Y2
@@ -43,14 +43,14 @@ def create_yaml(d, atompairs):
 
 def create_submission(dirs):
     mydir = os.getcwd()
-    user = os.getlogin()
+    user = getpass.getuser()
     with open('submit_measure.sh', 'w') as fo:
         fo.write('#!/bin/bash\n#SBATCH --job-name=measure\n#SBATCH --nodes=1\n#SBATCH --ntasks-per-node=28\n#SBATCH --time=00:10:00\n#SBATCH --mem=100G\n')
         fo.write('#SBATCH --chdir='+mydir+'\n')
-        fo.write('#SBATCH --partition=ilahie\n#SBATCH --account=ilahie\n\n')
-        fo.write('module load contrib/mopac16\n')
+        fo.write('#SBATCH --partition=compute\n#SBATCH --account=stf\n\n')
+        fo.write('module load chem/mopac/16\n')
         fo.write('source /usr/lusers/'+user+'/.rvm/scripts/rvm\n')
-        fo.write('ldd /sw/contrib/cuby4/cuby4/classes/algebra/algebra_c.so > ldd.log\n\n')
+        fo.write('ldd /mmfs1/sw/contrib/chem-src/cuby4/cuby4/classes/algebra/algebra_c.so > ldd.log\n')
         if len(dirs)==1 and dirs[0]==mydir:
             fo.write('cuby4 measure.yaml &>measure.log;\n')
         else:
