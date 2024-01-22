@@ -24,7 +24,7 @@ def run_kmeans(energy_file):
 
     # Select the lowest energetic conformer for each group.
     selected_idx = df.groupby("group id").apply(lambda df: df["energy/(kcal/mol)"].idxmin())
-    selected_df = df.ix[selected_idx]
+    selected_df = df.loc[selected_idx]
     output = "selected%dconformers.csv" % len(selected_df)
     selected_df.to_csv(output, index=False)
     with open(output, "a") as fo:

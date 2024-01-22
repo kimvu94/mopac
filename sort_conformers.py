@@ -12,10 +12,10 @@ def creat_slurm_task():
     "#SBATCH --time=0:5:00\n",
     "#SBATCH --mem=64Gb\n",
     "#SBATCH --chdir="+os.getcwd()+"\n",
-    "#SBATCH --partition=ilahie\n"
-    "#SBATCH --account=ilahie\n\n",
+    "#SBATCH --partition=ckpt\n"
+    "#SBATCH --account=stf\n\n",
     "# load module for python3 and related packages\n",
-    "module load anaconda3_5.3\n\n",
+    "#module load anaconda3_5.3\n\n",
     "~/mopac/geometry_clustering/conformer_selector.py " + energyfile + "\n"
     ]
     with open("submission.sh", "w") as fo:

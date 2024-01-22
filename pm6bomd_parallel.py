@@ -6,9 +6,8 @@
  Created: 11/27/2018
  Edited: 04/13/2022
  Usage:   python pm6bomd_parallel.py charge multiplicity  T (chg & mp are intergers; T is float)
-
 '''
-# Updated 12/20/2023 by jiahaow and kimvu for running on klone
+# Updated 12/20/2023 by jiahaow for running on klone
 
 import glob,os,sys,shutil,getpass
 

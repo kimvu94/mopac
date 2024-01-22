@@ -6,7 +6,7 @@ find all xyz files in the working directory and make directories and inp.yaml fo
 generate tasklists.sh file and parallel_run.sh file
 after finishing, run 'sbatch parallel_run.sh'
 '''
-# Updated 12/20/2023 by jiahaow and kimvu for running on klone
+# Updated 12/20/2023 by jiahaow for running on klone
 
 import glob,os,sys,getpass
 
